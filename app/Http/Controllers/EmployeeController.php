@@ -7,6 +7,16 @@ use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
 {
+    /**
+     * RESTful Resource Functions / Common Controller Functions
+     * index    - get all data
+     * show     - get specific data
+     * create   - show create form
+     * store    - insert/save data in the database
+     * edit     - show edit form
+     * update   - update data in the database
+     * destroy  - delete data from the database
+    */
     public function index()
     {
         $data = Employee::all();
