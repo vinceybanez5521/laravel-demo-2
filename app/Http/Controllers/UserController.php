@@ -23,6 +23,7 @@ class UserController extends Controller
         ];
 
         // return '<h1>UserController Show Page ' . $id . '</h1>';
-        return view('user.show', ['mockData' => $mockData]);
+        // return view('user.show', ['mockData' => $mockData]);
+        return view('user.show', $mockData);
     }
 }

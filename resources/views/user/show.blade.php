@@ -9,7 +9,7 @@
 <body>
     {{-- @dd($mockData) --}}
     {{-- {{ dd($mockData) }} --}}
-    <h1>{{ $mockData['id'] }}</h1>
-    <h3>{{ $mockData['name'] }}</h3>
+    <h1>{{ $id }}</h1>
+    <h3>{{ $name }}</h3>
 </body>
 </html>
