@@ -16,6 +16,13 @@ class UserController extends Controller
         $search = request()->query('search');
         dd($search); */
 
-        return '<h1>UserController Show Page ' . $id . '</h1>';
+        $mockData = [
+            'id' => $id,
+            'name' => 'Juan Dela Cruz',
+            'email' => 'jdelacruz@gmail.com'
+        ];
+
+        // return '<h1>UserController Show Page ' . $id . '</h1>';
+        return view('user.show', ['mockData' => $mockData]);
     }
 }
