@@ -17,3 +17,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/', function () {
+    return 'Hello World!';
+});
+
+Route::get('/', function () {
+    return '<h1>Hello World!</h1>';
+});
+
+Route::get('/home', function () {
+    return 'Home';
+});
