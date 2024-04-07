@@ -92,7 +92,7 @@ Route::get('/users/{id}', [UserController::class, 'show']); // {id} is a Path Pa
     Route::delete('/employees/{employee}/delete', [EmployeeController::class, 'destroy'])->name('employee.destroy');
 }); */
 
-Route::get('/employees', [EmployeeController::class, 'index'])->name('employee.index');
+Route::get('/employees', [EmployeeController::class, 'index'])->name('employee.index')->middleware('check-page-number:5');
 Route::get('/employees/create', [EmployeeController::class, 'create'])->name('employee.create');
 Route::get('/employees/{id}', [EmployeeController::class, 'show'])->name('employee.show')->middleware('check-access:5');
 Route::post('/employees/store', [EmployeeController::class, 'store'])->name('employee.store');
