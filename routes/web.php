@@ -81,5 +81,5 @@ Route::get('/download', function () {
 Route::get('/users', [UserController::class, 'index']);
 Route::get('/users/{id}', [UserController::class, 'show']); // {id} is a Path Parameter
 
-Route::get('/employees', [EmployeeController::class, 'index']);
-Route::get('/employees/{id}', [EmployeeController::class, 'show']);
+Route::get('/employees', [EmployeeController::class, 'index'])->name('employee.index');
+Route::get('/employees/{id}', [EmployeeController::class, 'show'])->name('employee.show');

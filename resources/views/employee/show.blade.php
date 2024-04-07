@@ -12,5 +12,9 @@
     <h3>{{ $first_name . ' ' . $last_name }}</h3>
     <h3>{{ $gender }}</h3>
     <h3>{{ $email }}</h3>
+
+    <div>
+        <a href="{{ route('employee.index') }}">Employee List</a>
+    </div>
 </body>
 </html>

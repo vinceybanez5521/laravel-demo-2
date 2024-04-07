@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Employee List</h1>
-    
+
     <table>
         <thead>
             <tr>
@@ -26,8 +26,11 @@
                     <td>{{ $employee->last_name }}</td>
                     <td>{{ $employee->gender }}</td>
                     <td>{{ $employee->email }}</td>
-                    <td>
+                    {{-- <td>
                         <a href="/employees/{{ $employee->id }}">View</a>
+                    </td> --}}
+                    <td>
+                        <a href="{{ route('employee.show', $employee->id) }}">View</a>
                     </td>
                 </tr>
             @endforeach
