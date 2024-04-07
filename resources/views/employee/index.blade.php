@@ -7,6 +7,8 @@
     <title>Employees</title>
 </head>
 <body>
+    <h1>Employee List</h1>
+    
     <table>
         <thead>
             <tr>
@@ -14,6 +16,7 @@
                 <th>Last Name</th>
                 <th>Gender</th>
                 <th>Email</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -23,6 +26,9 @@
                     <td>{{ $employee->last_name }}</td>
                     <td>{{ $employee->gender }}</td>
                     <td>{{ $employee->email }}</td>
+                    <td>
+                        <a href="/employees/{{ $employee->id }}">View</a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
