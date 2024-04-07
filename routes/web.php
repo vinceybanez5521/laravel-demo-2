@@ -82,6 +82,15 @@ Route::get('/download', function () {
 Route::get('/users', [UserController::class, 'index']);
 Route::get('/users/{id}', [UserController::class, 'show']); // {id} is a Path Parameter
 
+// Group Middleware
+/* Route::middleware('auth')->group(function () {
+    Route::get('/employees/create', [EmployeeController::class, 'create'])->name('employee.create');
+    Route::post('/employees/store', [EmployeeController::class, 'store'])->name('employee.store');
+    Route::get('/employees/{id}/edit', [EmployeeController::class, 'edit'])->name('employee.edit');
+    Route::put('/employees/{employee}', [EmployeeController::class, 'update'])->name('employee.update');
+    Route::delete('/employees/{employee}/delete', [EmployeeController::class, 'destroy'])->name('employee.destroy');
+}); */
+
 Route::get('/employees', [EmployeeController::class, 'index'])->name('employee.index');
 Route::get('/employees/create', [EmployeeController::class, 'create'])->name('employee.create');
 Route::get('/employees/{id}', [EmployeeController::class, 'show'])->name('employee.show');
@@ -89,6 +98,8 @@ Route::post('/employees/store', [EmployeeController::class, 'store'])->name('emp
 Route::get('/employees/{id}/edit', [EmployeeController::class, 'edit'])->name('employee.edit');
 Route::put('/employees/{employee}', [EmployeeController::class, 'update'])->name('employee.update');
 Route::delete('/employees/{employee}/delete', [EmployeeController::class, 'destroy'])->name('employee.destroy');
+// Add middleware to specific route
+// Route::get('/employees/create', [EmployeeController::class, 'create'])->name('employee.create')->middleware('auth');
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

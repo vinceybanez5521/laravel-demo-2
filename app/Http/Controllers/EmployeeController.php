@@ -18,6 +18,13 @@ class EmployeeController extends Controller
      * update   - update data in the database
      * destroy  - delete data from the database
      */
+
+    public function __construct()
+    {
+        // $this->middleware('auth');
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
+
     public function index()
     {
         $data = Employee::all();
