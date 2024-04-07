@@ -19,5 +19,14 @@
     <p>
         <a href="{{ route('employee.edit', $id) }}">Edit Employee</a>
     </p>
+    <p>
+        {{-- <a href="{{ route('employee.edit', $id) }}">Delete Employee</a> --}}
+        <form action="{{ route('employee.destroy', $id) }}" method="POST">
+            @method('DELETE')
+            @csrf
+
+            <input type="submit" value="Delete Employee">
+        </form>
+    </p>
 </body>
 </html>
