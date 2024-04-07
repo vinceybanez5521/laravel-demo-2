@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EmployeeController extends Controller
 {
@@ -20,7 +21,14 @@ class EmployeeController extends Controller
     public function index()
     {
         $data = Employee::all();
-        // dd($data) ;
+        $data = Employee::where('age', '>', 0)->get(); 
+        $data = Employee::where('first_name', 'LIKE', 'Al%')->get(); 
+        $data = Employee::select('age', DB::raw('COUNT(id) AS Total'))->groupBy('age')->get(); 
+        $data = Employee::where('age', '>', 0)->count();
+        $data = DB::select('SELECT * FROM employees');
+        $data = Employee::paginate(15);
+        $data = Employee::paginate();
+        // dd($data);
 
         return view('employee.index', ['employees' => $data]);
     }

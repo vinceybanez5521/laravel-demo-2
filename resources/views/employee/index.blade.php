@@ -37,5 +37,9 @@
             @endforeach
         </tbody>
     </table>
+
+    <div>
+        {{ $employees->links() }}
+    </div>
 </body>
 </html>
