@@ -16,7 +16,7 @@ class EmployeeController extends Controller
      * edit     - show edit form
      * update   - update data in the database
      * destroy  - delete data from the database
-    */
+     */
     public function index()
     {
         $data = Employee::all();
@@ -36,13 +36,34 @@ class EmployeeController extends Controller
         return view('employee.show', $data);
     }
 
-    public function edit($id) {
+    public function create()
+    {
+        return view('employee.create');
+    }
+
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'first_name' => ['required'],
+            'last_name' => ['required'],
+            'gender' => ['required'],
+            'email' => ['required']
+        ]);
+
+        Employee::create($validated);
+
+        return redirect()->route('employee.index');
+    }
+
+    public function edit($id)
+    {
         $data = Employee::findOrFail($id);
 
         return view('employee.edit', ['employee' => $data]);
     }
 
-    public function update(Request $request, Employee $employee) {
+    public function update(Request $request, Employee $employee)
+    {
         $validated = $request->validate([
             'first_name' => ['required'],
             'last_name' => ['required'],
