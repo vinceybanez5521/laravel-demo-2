@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -93,7 +94,7 @@ Route::get('/users/{id}', [UserController::class, 'show']); // {id} is a Path Pa
 
 Route::get('/employees', [EmployeeController::class, 'index'])->name('employee.index');
 Route::get('/employees/create', [EmployeeController::class, 'create'])->name('employee.create');
-Route::get('/employees/{id}', [EmployeeController::class, 'show'])->name('employee.show');
+Route::get('/employees/{id}', [EmployeeController::class, 'show'])->name('employee.show')->middleware('check-access:5');
 Route::post('/employees/store', [EmployeeController::class, 'store'])->name('employee.store');
 Route::get('/employees/{id}/edit', [EmployeeController::class, 'edit'])->name('employee.edit');
 Route::put('/employees/{employee}', [EmployeeController::class, 'update'])->name('employee.update');
@@ -103,3 +104,4 @@ Route::delete('/employees/{employee}/delete', [EmployeeController::class, 'destr
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/restricted', [HomeController::class, 'restrict'])->name('restrict');
