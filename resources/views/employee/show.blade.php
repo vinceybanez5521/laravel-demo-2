@@ -20,12 +20,11 @@
         <a href="{{ route('employee.edit', $id) }}">Edit Employee</a>
     </p>
     <p>
-        {{-- <a href="{{ route('employee.edit', $id) }}">Delete Employee</a> --}}
-        <form action="{{ route('employee.destroy', $id) }}" method="POST">
+        <a href="#" onclick="document.getElementById('deleteForm').submit()">Delete Employee</a>
+        
+        <form action="{{ route('employee.destroy', $id) }}" method="POST" id="deleteForm">
             @method('DELETE')
             @csrf
-
-            <input type="submit" value="Delete Employee">
         </form>
     </p>
 </body>
