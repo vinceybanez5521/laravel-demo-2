@@ -7,7 +7,11 @@
     <title>Employees</title>
 </head>
 <body>
-    <a href="{{ route('employee.create') }}">Create New Employee</a>
+    {{-- Hide element if unauthenticated --}}
+    @if (Auth::user())
+        <a href="{{ route('employee.create') }}">Create New Employee</a>
+    @endif
+
     <h1>Employee List</h1>
 
     <table>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -88,3 +89,6 @@ Route::post('/employees/store', [EmployeeController::class, 'store'])->name('emp
 Route::get('/employees/{id}/edit', [EmployeeController::class, 'edit'])->name('employee.edit');
 Route::put('/employees/{employee}', [EmployeeController::class, 'update'])->name('employee.update');
 Route::delete('/employees/{employee}/delete', [EmployeeController::class, 'destroy'])->name('employee.destroy');
+
+Auth::routes();
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
