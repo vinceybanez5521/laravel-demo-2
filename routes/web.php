@@ -83,3 +83,5 @@ Route::get('/users/{id}', [UserController::class, 'show']); // {id} is a Path Pa
 
 Route::get('/employees', [EmployeeController::class, 'index'])->name('employee.index');
 Route::get('/employees/{id}', [EmployeeController::class, 'show'])->name('employee.show');
+Route::get('/employees/{id}/edit', [EmployeeController::class, 'edit'])->name('employee.edit');
+Route::put('/employees/{employee}', [EmployeeController::class, 'update'])->name('employee.update');

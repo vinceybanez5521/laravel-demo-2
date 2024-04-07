@@ -35,4 +35,23 @@ class EmployeeController extends Controller
 
         return view('employee.show', $data);
     }
+
+    public function edit($id) {
+        $data = Employee::findOrFail($id);
+
+        return view('employee.edit', ['employee' => $data]);
+    }
+
+    public function update(Request $request, Employee $employee) {
+        $validated = $request->validate([
+            'first_name' => ['required'],
+            'last_name' => ['required'],
+            'gender' => ['required'],
+            'email' => ['required', 'email']
+        ]);
+
+        $employee->update($validated);
+
+        return redirect()->route('employee.show', $employee->id);
+    }
 }

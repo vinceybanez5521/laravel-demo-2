@@ -13,8 +13,11 @@
     <h3>{{ $gender }}</h3>
     <h3>{{ $email }}</h3>
 
-    <div>
+    <p>
         <a href="{{ route('employee.index') }}">Employee List</a>
-    </div>
+    </p>
+    <p>
+        <a href="{{ route('employee.edit', $id) }}">Edit Employee</a>
+    </p>
 </body>
 </html>
