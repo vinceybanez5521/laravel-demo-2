@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Employees</title>
-</head>
-<body>
+@include('partials.header')
+
     {{-- Hide element if unauthenticated --}}
     @if (Auth::user())
         <a href="{{ route('employee.create') }}">Create New Employee</a>
@@ -45,5 +38,5 @@
     <div>
         {{ $employees->links() }}
     </div>
-</body>
-</html>
+
+@include('partials.footer')

@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Edit Employee</title>
-</head>
-<body>
+@include('partials.header')
+
     <h1>Edit Employee</h1>
 
     <form action="{{ route('employee.update', $employee) }}" method="POST">
@@ -34,5 +27,5 @@
         </p>
         <input type="submit" value="Submit">
     </form>
-</body>
-</html>
+
+@include('partials.footer')
