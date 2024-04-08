@@ -1,5 +1,6 @@
-@include('partials.header')
+@extends('layouts.app')
 
+@section('content')
     <h1>Employee Profile</h1>
     <h3>{{ $id }}</h3>
     <h3>{{ $first_name . ' ' . $last_name }}</h3>
@@ -22,5 +23,4 @@
             </form>
         </p>
     @endif
-
-@include('partials.footer')
+@endsection

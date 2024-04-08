@@ -1,5 +1,6 @@
-@include('partials.header')
+@extends('layouts.app')
 
+@section('content')
     {{-- Hide element if unauthenticated --}}
     @if (Auth::user())
         <a href="{{ route('employee.create') }}">Create New Employee</a>
@@ -7,7 +8,7 @@
 
     <h1>Employee List</h1>
 
-    <table>
+    <table class="table">
         <thead>
             <tr>
                 <th>First Name</th>
@@ -38,5 +39,4 @@
     <div>
         {{ $employees->links() }}
     </div>
-
-@include('partials.footer')
+@endsection

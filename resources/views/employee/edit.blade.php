@@ -1,5 +1,6 @@
-@include('partials.header')
+@extends('layouts.app')
 
+@section('content')
     <h1>Edit Employee</h1>
 
     <form action="{{ route('employee.update', $employee) }}" method="POST">
@@ -27,5 +28,4 @@
         </p>
         <input type="submit" value="Submit">
     </form>
-
-@include('partials.footer')
+@endsection
