@@ -37,6 +37,10 @@ class Employee extends Model
         'full_name'
     ];
 
+    protected $hidden = [
+        'id'
+    ];
+
     /* 
     protected $guarded = [
         'created_at',

@@ -19,4 +19,30 @@ class EmployeeApiController extends Controller
 
         return $data;
     }
+
+    public function store(Request $request) {
+        $validated = $request->validate([
+            'first_name' => ['required'],
+            'last_name' => ['required'],
+            'gender' => ['required'],
+            'email' => ['required'],
+        ]);
+
+        return Employee::create($validated);
+    }
+
+    public function update(Request $request, Employee $employee) {
+        $validated = $request->validate([
+            'first_name' => ['required'],
+            'last_name' => ['required'],
+            'gender' => ['required'],
+            'email' => ['required'],
+        ]);
+
+        return $employee->update($validated);
+    }
+
+    public function destroy(Employee $employee) {
+        return $employee->delete();
+    }
 }
