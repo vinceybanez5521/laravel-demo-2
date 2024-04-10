@@ -19,6 +19,8 @@ class Employee extends Model
 
     // Custom Attributes
     // these are fields that are created at runtime - does not exists in the database
+    // but these are not accessible in the API response by default
+    // to make this available in the API response - put it inside $appends attribute
     protected function fullName(): Attribute {
         return new Attribute(
             get: fn() => $this->first_name . ' ' . $this->last_name,
@@ -30,6 +32,10 @@ class Employee extends Model
             }
         );
     }
+
+    protected $appends = [
+        'full_name'
+    ];
 
     /* 
     protected $guarded = [
