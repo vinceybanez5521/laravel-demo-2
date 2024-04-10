@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,6 +16,20 @@ class Employee extends Model
         'gender',
         'email',
     ];
+
+    // Custom Attributes
+    // these are fields that are created at runtime - does not exists in the database
+    protected function fullName(): Attribute {
+        return new Attribute(
+            get: fn() => $this->first_name . ' ' . $this->last_name,
+            set: function ($value) {
+                return [
+                    'first_name' => $value,
+                    'last_name' => $value
+                ];
+            }
+        );
+    }
 
     /* 
     protected $guarded = [

@@ -12,8 +12,7 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
+                    <th>Full Name</th>
                     <th>Gender</th>
                     <th>Email</th>
                     <th>Action</th>
@@ -22,8 +21,7 @@
             <tbody>
                 @foreach ($employees as $employee)
                     <tr>
-                        <td>{{ $employee->first_name }}</td>
-                        <td>{{ $employee->last_name }}</td>
+                        <td>{{ $employee->full_name }}</td>
                         <td>{{ $employee->gender }}</td>
                         <td>{{ $employee->email }}</td>
                         {{-- <td>

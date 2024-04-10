@@ -36,18 +36,19 @@ class EmployeeController extends Controller
         $data = Employee::paginate(15);
         $data = Employee::paginate();
         // dd($data);
-
+        
         return view('employee.index', ['employees' => $data]);
     }
-
+    
     public function show($id)
     {
         $data = Employee::where('id', $id)->get()->first();
         $data = Employee::where('id', $id)->first();
         $data = Employee::find($id);
         $data = Employee::findOrFail($id);
+        $data->full_name = 'John';
         // dd($data);
-
+        
         return view('employee.show', $data);
     }
 
