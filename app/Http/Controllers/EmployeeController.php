@@ -2,31 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\Interfaces\EmployeeRepositoryInterface;
 use App\Models\Employee;
-use App\Repositories\EmployeeRepository;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class EmployeeController extends Controller
 {
-    private $employeeRepository;
+    private $employeeRepositoryInterface;
 
-    public function __construct(EmployeeRepository $employeeRepository)
+    // Polymorphism
+    public function __construct(EmployeeRepositoryInterface $employeeRepositoryInterface)
     {
         $this->middleware('auth', ['except' => ['index', 'show']]);
-        $this->employeeRepository = $employeeRepository;
+        $this->employeeRepositoryInterface = $employeeRepositoryInterface;
     }
 
     public function index()
     {
-        $data = $this->employeeRepository->all();
+        $data = $this->employeeRepositoryInterface->all();
         
         return view('employee.index', ['employees' => $data]);
     }
     
     public function show($id)
     {
-        $data = $this->employeeRepository->findById($id);
+        $data = $this->employeeRepositoryInterface->findById($id);
                 
         return view('employee.show', $data);
     }
@@ -38,7 +38,7 @@ class EmployeeController extends Controller
 
     public function store(Request $request)
     {
-        $this->employeeRepository->create($request);
+        $this->employeeRepositoryInterface->create($request);
 
         return redirect()->route('employee.index');
     }
@@ -52,13 +52,13 @@ class EmployeeController extends Controller
 
     public function update(Request $request, Employee $employee)
     {
-        $this->employeeRepository->update($request, $employee);
+        $this->employeeRepositoryInterface->update($request, $employee);
 
         return redirect()->route('employee.show', $employee->id);
     }
 
     public function destroy(Employee $employee) {
-        $this->employeeRepository->delete($employee);
+        $this->employeeRepositoryInterface->delete($employee);
 
         return redirect()->route('employee.index');
     }

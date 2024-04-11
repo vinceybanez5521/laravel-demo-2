@@ -1,10 +1,11 @@
 <?php
 namespace App\Repositories;
 
+use App\Interfaces\EmployeeRepositoryInterface;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 
-class EmployeeRepository {
+class EmployeeMsSqlRepository implements EmployeeRepositoryInterface {
 
     public function all() {
         return Employee::paginate();
