@@ -23,6 +23,7 @@ class EmployeeRepositoryProvider extends ServiceProvider
     public function boot(): void
     {
         // Decide which class will be passed/injected to the constructor of EmployeeController
+        // This is commonly set on Design Time
         if(1 === 2) {
             $this->app->bind(EmployeeRepositoryInterface::class, EmployeeMySqlRepository::class);
         } else {
