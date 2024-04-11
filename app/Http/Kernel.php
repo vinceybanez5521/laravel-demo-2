@@ -66,5 +66,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'check-access' => \App\Http\Middleware\CheckEmployeeAccess::class,
         'check-page-number' => \App\Http\Middleware\CheckPageNumber::class,
+        'x-api-key' => \App\Http\Middleware\CheckAPIKey::class,
     ];
 }

@@ -20,7 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/login', [LoginApiController::class, 'login']);
+Route::post('/login', [LoginApiController::class, 'login'])->middleware('x-api-key');
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/employees', [EmployeeApiController::class, 'index']);
