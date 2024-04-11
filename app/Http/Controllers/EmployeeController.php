@@ -3,52 +3,31 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
+use App\Repositories\EmployeeRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class EmployeeController extends Controller
 {
-    /**
-     * RESTful Resource Functions / Common Controller Functions
-     * index    - get all data
-     * show     - get specific data
-     * create   - show create form
-     * store    - insert/save data in the database
-     * edit     - show edit form
-     * update   - update data in the database
-     * destroy  - delete data from the database
-     */
+    private $employeeRepository;
 
-    public function __construct()
+    public function __construct(EmployeeRepository $employeeRepository)
     {
-        // $this->middleware('auth');
-        // $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->employeeRepository = $employeeRepository;
     }
 
     public function index()
     {
-        $data = Employee::all();
-        $data = Employee::where('age', '>', 0)->get(); 
-        $data = Employee::where('first_name', 'LIKE', 'Al%')->get(); 
-        $data = Employee::select('age', DB::raw('COUNT(id) AS Total'))->groupBy('age')->get(); 
-        $data = Employee::where('age', '>', 0)->count();
-        $data = DB::select('SELECT * FROM employees');
-        $data = Employee::paginate(15);
-        $data = Employee::paginate();
-        // dd($data);
+        $data = $this->employeeRepository->all();
         
         return view('employee.index', ['employees' => $data]);
     }
     
     public function show($id)
     {
-        $data = Employee::where('id', $id)->get()->first();
-        $data = Employee::where('id', $id)->first();
-        $data = Employee::find($id);
-        $data = Employee::findOrFail($id);
-        $data->full_name = 'John';
-        // dd($data);
-        
+        $data = $this->employeeRepository->findById($id);
+                
         return view('employee.show', $data);
     }
 
@@ -59,14 +38,7 @@ class EmployeeController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'first_name' => ['required'],
-            'last_name' => ['required'],
-            'gender' => ['required'],
-            'email' => ['required']
-        ]);
-
-        Employee::create($validated);
+        $this->employeeRepository->create($request);
 
         return redirect()->route('employee.index');
     }
@@ -80,20 +52,13 @@ class EmployeeController extends Controller
 
     public function update(Request $request, Employee $employee)
     {
-        $validated = $request->validate([
-            'first_name' => ['required'],
-            'last_name' => ['required'],
-            'gender' => ['required'],
-            'email' => ['required', 'email']
-        ]);
-
-        $employee->update($validated);
+        $this->employeeRepository->update($request, $employee);
 
         return redirect()->route('employee.show', $employee->id);
     }
 
     public function destroy(Employee $employee) {
-        $employee->delete();
+        $this->employeeRepository->delete($employee);
 
         return redirect()->route('employee.index');
     }
