@@ -24,7 +24,7 @@ class EmployeeMySqlRepository implements EmployeeRepositoryInterface {
             'email' => ['required']
         ]);
 
-        Employee::create($validated);
+        return Employee::create($validated);
     }
 
     public function update(Request $request, Employee $employee) {
@@ -35,11 +35,11 @@ class EmployeeMySqlRepository implements EmployeeRepositoryInterface {
             'email' => ['required', 'email']
         ]);
 
-        $employee->update($validated);
+        return $employee->update($validated);
     }
 
     public function delete(Employee $employee) {
-        $employee->delete();
+        return $employee->delete();
     }
 
 }
